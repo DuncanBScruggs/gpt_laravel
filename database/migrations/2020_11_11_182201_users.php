@@ -19,7 +19,7 @@ class Users extends Migration
             $table->string('email');
             $table->string('password');
             $table->timestamp('last_logged_in')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('account_verified_at')->nullable();
             $table->timestamps();
         });
     }

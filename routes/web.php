@@ -21,6 +21,8 @@ $router->get('/', function () use ($router) {
 
 $router->post('/register','UsersController@register');
 
+$router->get('/anonymousAccount', 'UsersController@createAnonymousAccount');
+
 $router->group(['middleware' => 'auth'], function () use ($router){
     $router->get('/getUser', 'UsersController@getUser');
 });
