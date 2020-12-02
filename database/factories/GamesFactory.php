@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Games;
+use App\Models\Games;
 use Faker\Generator as Faker;
 
 $factory->define(Games::class, function (Faker $faker) {

@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -20,6 +22,6 @@ $router->get('/', function () use ($router) {
 $router->post('/register','UsersController@register');
 
 $router->group(['middleware' => 'auth'], function () use ($router){
-    
+    $router->get('/getUser', 'UsersController@getUser');
 });
 

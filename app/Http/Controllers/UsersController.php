@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
-
+    public function getUser(Request $request) {
+        $user = $request->user();
+        return $user->toArray();
+    }
 
     public function register(Request $request)
     {

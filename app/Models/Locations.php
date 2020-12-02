@@ -12,4 +12,8 @@ class Locations extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
+
+    public function games(){
+        return $this -> belongsTo('App\Models\Games', 'id', 'ref_game_id');
+    }
 }

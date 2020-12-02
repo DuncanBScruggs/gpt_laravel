@@ -16,20 +16,20 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ref_location_id');
-            // $table->unsignedBigInteger('parent_task');
+            $table->unsignedBigInteger('ref_parent_id')->nullable();
             $table->text('task');
             $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('ref_loactions_id')
+            $table->foreign('ref_location_id')
             ->references('id')
             ->on('locations')
             ->onDelete('cascade');
 
-            // $table->foreign('ref_parent_id')
-            // ->references('id')
-            // ->on('locations')
-            // ->onDelete('cascade');
+            $table->foreign('ref_parent_id')
+            ->references('id')
+            ->on('locations')
+            ->onDelete('cascade');
         });
     }
 
