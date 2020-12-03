@@ -13,10 +13,12 @@ class Characters extends Model
     public $incrementing = true;
     public $timestamps = true;
 
-    public function user(){
-        return $this -> belongsTo('App\Models\User', 'id', 'ref_user_id');
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'id', 'ref_user_id');
     }
-    public function games(){
-        return $this -> belongsTo('App\Models\Games', 'id', 'ref_game_id');
+    public function games()
+    {
+        return $this->belongsTo('App\Models\Games', 'id', 'ref_game_id');
     }
 }

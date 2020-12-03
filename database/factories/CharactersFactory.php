@@ -1,12 +1,17 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Characters;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Characters::class, function (Faker $faker) {
+class CharactersFactory extends Factory {
+
+    protected $model = Characters::class;
+
+    public function definition()
+    {
     return [
-        //
+        'name' => $this->faker->text(10),
     ];
-});
+}};

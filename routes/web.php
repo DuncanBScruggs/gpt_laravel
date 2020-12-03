@@ -19,11 +19,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/register','UsersController@register');
+$router->post('/register', 'UsersController@register');
 
+
+$router->get('/getGames', 'GamesController@gamesIndex');
 $router->get('/anonymousAccount', 'UsersController@createAnonymousAccount');
 
-$router->group(['middleware' => 'auth'], function () use ($router){
+$router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/getUser', 'UsersController@getUser');
+    $router->post('/createCharacter', 'CharactersController@createCharacter');
 });
-

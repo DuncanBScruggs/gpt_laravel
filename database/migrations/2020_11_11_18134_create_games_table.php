@@ -16,6 +16,7 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('name');
+            $table->text('image');
             $table->timestamps();
         });
     }
