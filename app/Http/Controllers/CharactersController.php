@@ -12,6 +12,11 @@ class CharactersController extends Controller
         return Characters::all();
     }
 
+    public function userCharactersIndex()
+    {
+        return Characters::where('ref_user_id')->get();
+    }
+
     public function createCharacter(Request $request)
     {
         $user = $request->user();

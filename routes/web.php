@@ -28,4 +28,5 @@ $router->get('/anonymousAccount', 'UsersController@createAnonymousAccount');
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/getUser', 'UsersController@getUser');
     $router->post('/createCharacter', 'CharactersController@createCharacter');
+    $router->get('/userCharactersIndex', 'CharactersController@userCharactersIndex');
 });
