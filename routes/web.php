@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,9 +19,14 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/register','UsersController@register');
+$router->post('/register', 'UsersController@register');
 
-$router->group(['middleware' => 'auth'], function () use ($router){
-    
+
+$router->get('/getGames', 'GamesController@gamesIndex');
+$router->get('/anonymousAccount', 'UsersController@createAnonymousAccount');
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('/getUser', 'UsersController@getUser');
+    $router->post('/createCharacter', 'CharactersController@createCharacter');
+    $router->get('/userCharactersIndex', 'CharactersController@userCharactersIndex');
 });
-
