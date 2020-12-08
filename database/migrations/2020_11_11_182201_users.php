@@ -18,8 +18,8 @@ class Users extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->string('password');
-            $table->timestamp('last_logged_in')->nullable();
-            $table->timestamp('account_verified_at')->nullable();
+            $table->dateTime('last_logged_in')->nullable();
+            $table->dateTime('account_verified_at')->nullable();
             $table->timestamps();
         });
     }

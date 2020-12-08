@@ -12,6 +12,11 @@ class LocationsController extends Controller
         return Locations::all();
     }
 
+    public function gameLocationsIndex($game_id)
+    {
+        return Locations::where('ref_game_id', $game_id)->get();
+    }
+
     public function createLocation(Request $request)
     {
 

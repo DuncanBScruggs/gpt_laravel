@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -16,7 +18,8 @@ class UsersController extends Controller
 
     public function createAnonymousAccount (){
         $user = User::factory(1)->create();
-        $data['token'] =  $user->createToken('MyApp')->accessToken;
+        $data['token'] = $user->createToken('MyApp')->accessToken;
+        $user->save();
 
         return response(['data' => $data, 'message' => 'Anonymous Account created successfully!', 'status' => true]);
     }
@@ -43,9 +46,9 @@ class UsersController extends Controller
     }
 
     public function authorizeAccount(Request $request){
-        // get user using eloquent
-        // $user['account_verified_at'] = mktime();
-        // return response(['user' => $user, 'message' => 'Account authorized successfully!', 'status' => true]);
+        $user = $request->user();
+        $user['account_verified_at'] = Carbon::now();
+        return response(['user' => $user, 'message' => 'Account authorized successfully!', 'status' => true]);
     }
 
     public function register(Request $request)
@@ -62,9 +65,11 @@ class UsersController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+        $user->account_verified_at = Carbon::now();
+        $user->save();
       
+
         /**Take note of this: Your user authentication access token is generated here **/
-        $user['account_verified_at'] = time();
         $data['token'] =  $user->createToken('MyApp')->accessToken;
 
         return response(['data' => $data, 'message' => 'Authorized Account created successfully!', 'status' => true]);

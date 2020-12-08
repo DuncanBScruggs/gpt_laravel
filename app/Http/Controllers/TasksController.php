@@ -12,15 +12,22 @@ class TasksController extends Controller
         return Tasks::all();
     }
 
-    public function createtask(Request $request)
+    public function locationTasksIndex($location_id)
     {
+        return Tasks::where('ref_location_id', $location_id)->get();
+    }
 
+    public function createTask(Request $request)
+    {
         $task = new Tasks;
+        
         $task->task = request('task');
-        $task->ref_game_id = request('ref_game_id');
+        $task->ref_location_id = request('ref_location_id');
 
         $task->save();
+        return Tasks::where('ref_location_id', request('ref_location_id'))->get();
     }
+    
 
     public function deletetask(Request $request)
     {

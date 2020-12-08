@@ -12,6 +12,7 @@ class Characters extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
+    protected $with = ['charactertask'];
 
     public function user()
     {
@@ -20,5 +21,9 @@ class Characters extends Model
     public function games()
     {
         return $this->belongsTo('App\Models\Games', 'id', 'ref_game_id');
+    }
+
+    public function charactertask(){
+        return $this -> hasMany('App\Models\CharacterTask', 'ref_character_id');
     }
 }

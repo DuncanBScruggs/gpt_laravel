@@ -1,12 +1,21 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Locations;
-use Faker\Generator as Faker;
+use App\Models\Games;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Locations::class, function (Faker $faker) {
+class LocationsFactory extends Factory {
+
+    protected $model = Locations::class;
+
+    public function definition()
+    {
+        $games = Games::all()->pluck('id')->toArray();
+
     return [
-        //
+        'location' => $this->faker->text(10),
+        'ref_game_id' => $this->faker->randomElement($games),
     ];
-});
+}};

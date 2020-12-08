@@ -24,6 +24,7 @@ class UserFactory extends Factory
         return [
             'email' => $this->faker->unique()->safeEmail,
             'password' => 'changeme',
+            'account_verified_at' => $this->faker->dateTime($max = 'now'),
         ];
     }
 }
