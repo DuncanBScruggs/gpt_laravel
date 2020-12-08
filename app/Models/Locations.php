@@ -17,8 +17,9 @@ class Locations extends Model
     public function games(){
         return $this -> belongsTo('App\Models\Games', 'id', 'ref_game_id');
     }
-
     public function tasks(){
         return $this -> hasMany('App\Models\Tasks', 'ref_location_id');
     }
+
+
 }

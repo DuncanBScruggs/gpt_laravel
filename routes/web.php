@@ -22,10 +22,11 @@ $router->get('/', function () use ($router) {
 $router->post('/register', 'UsersController@register');
 $router->get('/getGames', 'GamesController@gamesIndex');
 $router->get('/getCharacters', 'CharactersController@charactersIndex');
-$router->get('/anonymousAccount', 'UsersController@createAnonymousAccount');
+$router->post('/anonymousAccount', 'UsersController@createAnonymousAccount');
 $router->get('/getLocations/{game_id}', 'LocationsController@gameLocationsIndex');
-$router->get('/getTasks/{location_id}', 'TasksController@locationTasksIndex');
-$router->get('/updateTask/{location_id}', 'TasksController@updateTask');
+// $router->get('/getTasks/{location_id}', 'TasksController@locationTasksIndex');
+$router->get('/getCharacterTasks', 'CharacterTasksController@Index');
+$router->post('/createCharacterTask', 'CharacterTasksController@createCharacterTask');
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('/getUser', 'UsersController@getUser');

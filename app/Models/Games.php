@@ -12,4 +12,11 @@ class Games extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
+
+    public function character(){
+        return $this -> belongsTo('App\Models\Characters', 'ref_character_id');
+    }
+    public function locations(){
+        return $this -> hasMany('App\Models\Locations', 'ref_location_id');
+    }
 }

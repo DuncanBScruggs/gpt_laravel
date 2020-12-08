@@ -18,7 +18,8 @@ class UsersController extends Controller
 
     public function createAnonymousAccount (){
         $user = User::factory(1)->create();
-        $data['token'] =  $user->createToken('MyApp')->accessToken;
+        $data['token'] = $user->createToken('MyApp')->accessToken;
+        $user->save();
 
         return response(['data' => $data, 'message' => 'Anonymous Account created successfully!', 'status' => true]);
     }
