@@ -1,32 +1,9 @@
 <?php
-// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-// $host = $url["host"] ?? null;
-// $username = $url["user"] ?? null;
-// $password = $url["pass"] ?? null;
-// $database = substr($url["path"], 1);
-// 'mysql' => [
-//             'driver' => 'mysql',
-//             'host' => $host,
-//             'port' => env('DB_PORT', '3306'),
-//             'database' => $database,
-//             'username' => $username,
-//             'password' => $password,
-//             'unix_socket' => env('DB_SOCKET', ''),
-//             'charset' => 'utf8mb4',
-//             'collation' => 'utf8mb4_unicode_ci',
-//             'prefix' => '',
-//             'strict' => true,
-//             'engine' => null,
-//         ]
+
 use Illuminate\Support\Str;
 
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
-$host = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'], '/');
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -37,7 +14,9 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
+
     'default' => env('DB_CONNECTION', 'mysql'),
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -53,7 +32,9 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
+
     'connections' => [
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -62,44 +43,26 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        // Local Test uncomment for local
-
-        // 'mysql' => [
-        //     'driver' => 'mysql',
-        //     'url' => env('DATABASE_URL'),
-        //     'host' => env('DB_HOST', '127.0.0.1'),
-        //     'port' => env('DB_PORT', '3306'),
-        //     'database' => env('DB_DATABASE', 'forge'),
-        //     'username' => env('DB_USERNAME', 'forge'),
-        //     'password' => env('DB_PASSWORD', ''),
-        //     'unix_socket' => env('DB_SOCKET', ''),
-        //     'charset' => 'utf8mb4',
-        //     'collation' => 'utf8mb4_unicode_ci',
-        //     'prefix' => '',
-        //     'prefix_indexes' => true,
-        //     'strict' => true,
-        //     'engine' => null,
-        //     'options' => extension_loaded('pdo_mysql') ? array_filter([
-        //         PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-        //     ]) : [],
-        // ],
-
-        // Remote Test uncomment for remote
-
         'mysql' => [
             'driver' => 'mysql',
-            'host' => $host,
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -114,6 +77,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),
@@ -126,7 +90,9 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table
@@ -137,7 +103,9 @@ return [
     | the migrations on disk haven't actually been run in the database.
     |
     */
+
     'migrations' => 'migrations',
+
     /*
     |--------------------------------------------------------------------------
     | Redis Databases
@@ -148,12 +116,16 @@ return [
     | such as APC or Memcached. Laravel makes it easy to dig right in.
     |
     */
+
     'redis' => [
+
         'client' => env('REDIS_CLIENT', 'phpredis'),
+
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
         ],
+
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -161,6 +133,7 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
         ],
+
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -168,5 +141,7 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
+
     ],
+
 ];
