@@ -12,9 +12,11 @@ class CharactersController extends Controller
         return Characters::all();
     }
 
-    public function userCharactersIndex()
+    public function userCharactersIndex(Request $request)
     {
-        return Characters::where('ref_user_id')->get();
+        $user = $request->user();
+        $game_id = request('ref_game_id');
+        return Characters::where('ref_user_id', $user->id)->where('ref_game_id', $game_id)->get();
     }
 
     public function createCharacter(Request $request)
@@ -23,10 +25,11 @@ class CharactersController extends Controller
         $character = new Characters;
         $character->name = request('name');
         $character->ref_user_id = $user->id;
-        $character->ref_game_id = request('ref_game_id');
+        $game_id = request('ref_game_id');
+        $character->ref_game_id = $game_id;
 
         $character->save();
-        return $character;
+        return Characters::where('ref_user_id', $user->id)->where('ref_game_id', $game_id)->get();
     }
 
     public function deleteCharacter(Request $request)

@@ -1,12 +1,19 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Tasks;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Tasks::class, function (Faker $faker) {
+class TasksFactory extends Factory {
+
+    protected $model = Tasks::class;
+
+    public function definition()
+    {
     return [
-        //
+        'name' => $this->faker->text(10),
+        'ref_location_id' => 1,
+        'status' => 0,
     ];
-});
+}};

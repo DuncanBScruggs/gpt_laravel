@@ -13,6 +13,6 @@ class GamesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // hard code actual game data
     }
 }
