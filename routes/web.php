@@ -25,11 +25,10 @@ $router->get('/getCharacters', 'CharactersController@charactersIndex');
 $router->post('/anonymousAccount', 'UsersController@createAnonymousAccount');
 $router->get('/getLocations/{game_id}', 'LocationsController@gameLocationsIndex');
 $router->get('/getCharacterTasks', 'CharacterTasksController@Index');
-$router->post('/createCharacterTask', 'CharacterTasksController@createCharacterTask');
-$router->get('/getCharacterTask', 'CharacterTasksController@getCharacterTaskIndex');
-$router->delete('/deleteCharacterTask', 'CharacterTasksController@deleteCharacterTask');
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->post('/createCharacterTask', 'CharacterTasksController@createCharacterTask');
+    $router->post('/deleteCharacterTask', 'CharacterTasksController@deleteCharacterTask');
     $router->get('/getUser', 'UsersController@getUser');
     $router->put('/updateAccount', 'UsersController@updateAccount');
     $router->post('/createCharacter', 'CharactersController@createCharacter');
