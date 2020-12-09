@@ -4,9 +4,9 @@ use Illuminate\Support\Str;
 
 $url = getenv('JAWSDB_URL');
 $dbparts = parse_url($url);
-$host = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
+$host = 'aqx5w9yc5brambgl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+$username = 'x0am9ueljfarzll6';
+$password = 'yblc59divdmqubmj';
 $database = ltrim($dbparts['path'], '/');
 
 return [
